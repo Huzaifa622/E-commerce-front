@@ -35,6 +35,7 @@ const StyledDesc = styled.div`
 const ButtonWrapper = styled.div`
   display: flex;
   gap: 5px;
+  margin-top: 10px;
 `;
 const Featured = () => {
   return (
