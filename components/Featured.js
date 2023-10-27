@@ -73,7 +73,7 @@ const Featured = ({product}) => {
           </StyledDesc>
           <StyledDesc>
             <div>
-              <img src="/laptop.png" />
+              <img src={"/laptop.png"} />
             </div>
           </StyledDesc>
         </StyledDiv>
