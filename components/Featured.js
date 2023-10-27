@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import Center from "./Center";
 import Button from "./Button";
+import ButtonLink from "./ButtonLink";
 
 const Bg = styled.div`
   background-color: #191919;
@@ -15,7 +16,7 @@ const Title = styled.h1`
 
 const StyledDiv = styled.div`
   display: grid;
-  grid-template-columns: 0.8fr 1.2fr;
+  grid-template-columns: 1.1fr 0.9fr;
   gap: 40px;
   img {
     max-width: 100%;
@@ -37,23 +38,21 @@ const ButtonWrapper = styled.div`
   gap: 5px;
   margin-top: 10px;
 `;
-const Featured = () => {
+const Featured = ({product}) => {
   return (
     <Bg>
       <Center>
         <StyledDiv>
           <StyledDesc>
-            <Title>Pro Book</Title>
+            <Title>{product.title}</Title>
             <Description>
-              Contrary to popular belief, Lorem Ipsum is not simply random text.
-              It has roots in a piece of classical Latin literature from 45 BC,
-              making it over 2000 years old.
+             {product.description}
             </Description>
             <ButtonWrapper>
-              <Button primary >
+              <ButtonLink href={'/product/'+ product._id}  primary={1}>
                 Read more
-              </Button>
-              <Button >
+              </ButtonLink>
+              <Button>
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   fill="none"

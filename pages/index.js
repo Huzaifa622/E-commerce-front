@@ -1,6 +1,6 @@
 import Featured from "@/components/Featured";
 import Header from "@/components/Header";
-import { Product } from "@/components/models/Product";
+import { Product } from "@/models/Product";
 import { mongooseConnect } from "@/lib/mongoose";
 
 export default function HomePage({ product }) {
@@ -8,7 +8,7 @@ export default function HomePage({ product }) {
   return (
     <>
       <Header />
-      <Featured />
+      <Featured product = {product}/>
     </>
   );
 }
