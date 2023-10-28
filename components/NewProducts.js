@@ -1,11 +1,30 @@
-import React from 'react'
+import React from "react";
+import Center from "./Center";
+import styled from "styled-components";
+import ProductTemplate from "./ProductTemplate";
 
-const NewProducts = () => {
+const ProductGrid = styled.div`
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  margin-top: 20px;
+  gap: 20px;
+  
+
+`;
+
+const NewProducts = ({ products }) => {
   return (
-   <>
-   <div>new products</div>
-   </>
-  )
-}
+    <Center>
+      <ProductGrid>
+        {products &&
+          products.map((product) => (
+          
+              <ProductTemplate {...product} />
+           
+          ))}
+      </ProductGrid>
+    </Center>
+  );
+};
 
-export default NewProducts
+export default NewProducts;
