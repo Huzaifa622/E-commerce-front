@@ -5,7 +5,7 @@ import ProductTemplate from "./ProductTemplate";
 
 const ProductGrid = styled.div`
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
   margin-top: 20px;
   gap: 20px;
   
@@ -17,7 +17,7 @@ const NewProducts = ({ products }) => {
     <Center>
       <ProductGrid>
         {products &&
-          products.map((product) => (
+          products?.map((product) => (
           
               <ProductTemplate {...product} />
            

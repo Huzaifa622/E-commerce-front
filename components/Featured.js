@@ -73,7 +73,7 @@ const Featured = ({product}) => {
           </StyledDesc>
           <StyledDesc>
             <div>
-              <img src={"/laptop.png"} />
+              <img src={"https://firebasestorage.googleapis.com/v0/b/ecommerce-app-13fa8.appspot.com/o/userImages%2Fsam.webp?alt=media&token=04dadda6-d4f7-4a45-97bd-6d3b804933bd"} />
             </div>
           </StyledDesc>
         </StyledDiv>
