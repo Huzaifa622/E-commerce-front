@@ -15,6 +15,7 @@ const ProductGrid = styled.div`
 const NewProducts = ({ products }) => {
   return (
     <Center>
+      <div>New Arrival</div>
       <ProductGrid>
         {products &&
           products?.map((product) => (
