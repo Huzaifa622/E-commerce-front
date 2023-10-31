@@ -53,7 +53,8 @@ const Featured = ({product}) => {
               <ButtonLink href={'/product/'+ product._id}  primary={1}>
                 Read more
               </ButtonLink>
-              <Button primary>
+              <Button
+               primary>
               <CartIcon/>
                 Add to cart
               </Button>
