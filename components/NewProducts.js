@@ -8,12 +8,12 @@ const ProductGrid = styled.div`
   grid-template-columns: 1fr 1fr 1fr 1fr;
   margin-top: 20px;
   gap: 20px;
-  grid-wr;
+  
   
 
 `;
 const Title = styled.h1`
-font-weight: 800;
+font-weight: 900;
 margin:40px 5px;
 
 `
