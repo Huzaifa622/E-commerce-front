@@ -3,6 +3,8 @@ import Center from "./Center";
 import Button from "./Button";
 import ButtonLink from "./ButtonLink";
 import CartIcon from "./icons/CartIcon";
+import { useContext } from "react";
+import { CartContext } from "@/components/CartContext"; // Adjust the import path as needed
 
 const Bg = styled.div`
   background-color: #191919;
@@ -39,30 +41,37 @@ const ButtonWrapper = styled.div`
   gap: 5px;
   margin-top: 10px;
 `;
-const Featured = ({product}) => {
+const Featured = ({ product }) => {
+  const { cart, addToCart } = useContext(CartContext); 
+
+  const addFeatureProd = () => {
+    addToCart(product._id); 
+  };
+
   return (
     <Bg>
       <Center>
         <StyledDiv>
           <StyledDesc>
             <Title>{product.title}</Title>
-            <Description>
-             {product.description}
-            </Description>
+            <Description>{product.description}</Description>
             <ButtonWrapper>
-              <ButtonLink href={'/product/'+ product._id}  primary={1}>
+              <ButtonLink href={"/product/" + product._id} primary={1}>
                 Read more
               </ButtonLink>
-              <Button
-               primary>
-              <CartIcon/>
+              <Button onClick={addFeatureProd} primary>
+                <CartIcon />
                 Add to cart
               </Button>
             </ButtonWrapper>
           </StyledDesc>
           <StyledDesc>
             <div>
-              <img src={"https://firebasestorage.googleapis.com/v0/b/ecommerce-app-13fa8.appspot.com/o/userImages%2Fsam.webp?alt=media&token=04dadda6-d4f7-4a45-97bd-6d3b804933bd"} />
+              <img
+                src={
+                  "https://firebasestorage.googleapis.com/v0/b/ecommerce-app-13fa8.appspot.com/o/userImages%2Fsam.webp?alt=media&token=04dadda6-d4f7-4a45-97bd-6d3b804933bd"
+                }
+              />
             </div>
           </StyledDesc>
         </StyledDiv>
