@@ -43,7 +43,7 @@ const Cart = () => {
               <h2>Your Cart is Empty</h2>
             </Box>
           )}
-          {cartProd?.length > 0 && (
+          {products?.length > 0 && (
             <Box>
               <h2>Cart</h2>
               {products?.map(prod =>(
