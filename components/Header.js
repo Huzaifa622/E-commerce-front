@@ -31,7 +31,7 @@ display: flex;
 gap: 15px;
 `
 export default function Header() {
-  const {cart} = useContext(CartContext)
+  const {cartProd} = useContext(CartContext)
   return (
     <>
       <StyledHeader>
@@ -43,7 +43,7 @@ export default function Header() {
               <NavLink href={""}>All Products</NavLink>
               <NavLink href={""}>Categories</NavLink>
               <NavLink href={""}>Account</NavLink>
-              <NavLink href={'/cart'}>Cart ({cart.length})</NavLink>
+              <NavLink href={'/cart'}>Cart ({cartProd?.length})</NavLink>
             </StyledNav>
           </Wrapper>
         </Center>

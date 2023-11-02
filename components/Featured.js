@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import Center from "./Center";
-import Button from "./Button";
+import Button, { StyledButton } from "./Button";
 import ButtonLink from "./ButtonLink";
 import CartIcon from "./icons/CartIcon";
 import { useContext } from "react";

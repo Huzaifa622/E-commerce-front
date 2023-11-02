@@ -4,7 +4,7 @@ import { primary, secondary } from "@/lib/colors";
 import styled from "styled-components";
 import css from "styled-jsx/css";
 
-const StyledButton = styled.button`
+export const StyledButton = styled.button`
   display: flex;
   align-items: center;
   gap: 4px;
