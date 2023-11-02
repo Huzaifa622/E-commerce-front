@@ -1,7 +1,9 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import styled from 'styled-components'
 import Button from './Button'
 import CartIcon from './icons/CartIcon'
+
+import CartContextProvider, { CartContext } from './CartContext'
 
 const ProductWrapper = styled.div`
 `
@@ -38,6 +40,7 @@ font-weight: 700;
 font-size: 1.2rem;
 `
 const ProductTemplate = ({_id , title, images , description , price}) => {
+  const {addToCart} = useContext(CartContext)
   return (
  
     <ProductWrapper>
@@ -51,7 +54,7 @@ const ProductTemplate = ({_id , title, images , description , price}) => {
     <div>{title}</div>
     <PriceBox>
     <PriceTitle>${price}</PriceTitle>
-    <Button primary white><CartIcon/> Add to cart</Button>
+    <Button primary white onClick={()=> addToCart(_id)}><CartIcon/> Add to cart</Button>
     </PriceBox>
     </ProductInfo>
     </ProductWrapper>

@@ -9,6 +9,8 @@ const CartContextProvider = ({children}) => {
   const addToCart = (productID) =>{
     setCart(prev => [...prev, productID])
   }
+
+  
   return (
     <CartContext.Provider value={{setCart , cart , addToCart}}>
       {children}
