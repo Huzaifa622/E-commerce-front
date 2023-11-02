@@ -40,6 +40,27 @@ export const StyledButton = styled.button`
       border: 1px solid ${secondary};
      
     `}
+  ${(props) =>
+    props.block &&
+    !props.white &&
+    css`
+    display: block;
+    width: 100%;
+      background-color: #000;
+      color: #fff;
+      border: 1px solid #000;
+    `}
+  ${(props) =>
+    props.block &&
+    props.white &&
+    css`
+    display: block;
+    width: 100%;
+      background-color: transparent;
+      color: #fff
+      border: 1px solid #fff
+     
+    `}
 
 svg {
     height: 20px;
