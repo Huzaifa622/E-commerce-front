@@ -70,6 +70,7 @@ border-radius: 12px;
 const Cart = () => {
   const { cartProd , addToCart , removeProd } = useContext(CartContext);
   const [products, setProducts] = useState([]);
+
   useEffect(() => {
     if (cartProd) {
       axios.post("/api/cart", { ids: cartProd }).then((response) => {
@@ -77,6 +78,13 @@ const Cart = () => {
       });
     }
   }, [cartProd]);
+  let total = 0;
+  for(let prod of cartProd){
+    let totalProductPrice = products.find(p=>p._id==prod)?.price||0;
+    total += totalProductPrice;
+    console.log(total)
+    
+  }
   return (
     <>
       <Header />
@@ -95,14 +103,16 @@ const Cart = () => {
                     <th>Price</th>
                   </tr>
                 </thead>
+                <tbody>
                 {products?.map((prod) => (
-                  <tbody>
                     <ProductDesc>
                       <td>
                         <ProductImage>
                           <img src={prod?.images[0]} alt="prodimg" />
                         </ProductImage>
-                        {prod.title}
+                       <h2>
+                         {prod.title}
+                        </h2>
                       </td>
                       <td>
                         <h2>
@@ -125,8 +135,18 @@ const Cart = () => {
                         </h2>
                       </td>
                     </ProductDesc>
-                  </tbody>
-                ))}
+                    
+                    ))}
+                    <tr>
+                      <td></td>
+                      <td></td>
+                      <td>
+                        <h2>
+                        ${total}
+                        </h2>
+                        </td>
+                    </tr>
+                    </tbody>
               </Table>
             )}
           </Box>
