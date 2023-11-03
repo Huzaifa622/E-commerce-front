@@ -19,8 +19,15 @@ const CartContextProvider = ({ children }) => {
     setCartProd((prev) => [...prev, productID]);
     console.log(ls)
   };
+  const removeProd = (productId) =>{
+setCartProd(prev=>{
+  const prevIndex = prev.indexOf(productId)
+  let newArr= prev.filter((item,index)=> index!==prevIndex )
+  return newArr
+})
+  }
   return (
-    <CartContext.Provider value={{ setCartProd, cartProd, addToCart }}>
+    <CartContext.Provider value={{ setCartProd, cartProd, addToCart , removeProd }}>
       {children}
     </CartContext.Provider>
   );

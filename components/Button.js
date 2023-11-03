@@ -8,13 +8,16 @@ export const StyledButton = styled.button`
   display: flex;
   align-items: center;
   gap: 4px;
-
-  color: #fff;
+  font-weight: 500;
+  
+background-color: #eee;
+  color: #000;
   padding: 5px 16px;
   border-radius: 5px;
   cursor: pointer;
   font-size: 0.9rem;
-  /* outline: none; */
+  outline: none;
+  border: #eee;
 
   ${(props) =>
     props.size === "l" &&
