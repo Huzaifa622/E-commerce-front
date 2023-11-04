@@ -49,27 +49,47 @@ const ProductDesc = styled.tr`
   padding: 10px 5px;
 `;
 const ButtonIncDec = styled.button`
-background-color: #eee;
-outline: none;
-border: none;
-cursor: pointer;
-padding: 5px 15px;
-border-radius: 5px;
-font-size: 1rem;
-font-weight: 600;
-color: #aaa;
-`
+  background-color: #eee;
+  outline: none;
+  border: none;
+  cursor: pointer;
+  padding: 5px 15px;
+  border-radius: 5px;
+  font-size: 1rem;
+  font-weight: 600;
+  color: #aaa;
+`;
 const StyledQuantity = styled.span`
-padding: 3px 5px;
+  padding: 3px 5px;
 `;
 const StyledQuantityBox = styled.span`
-border: 1px solid #eee;
-padding: 2px 0;
-border-radius: 12px;
+  border: 1px solid #eee;
+  padding: 2px 0;
+  border-radius: 12px;
+`;
+const Input = styled.input`
+  padding: 6px 8px;
+  margin-bottom: 4px;
+  width: 100%;
+  box-sizing: border-box;
+  border-radius: 7px;
+  outline: none;
+  border: 1px solid #eee;
+`;
+
+const CityInfo = styled.div`
+  display: flex;
+  gap: 4px;
 `;
 const Cart = () => {
-  const { cartProd , addToCart , removeProd } = useContext(CartContext);
+  const { cartProd, addToCart, removeProd } = useContext(CartContext);
   const [products, setProducts] = useState([]);
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [city, setCity] = useState("");
+  const [postal, setPostal] = useState("");
+  const [address, setAddress] = useState("");
+  const [country, setCountry] = useState("");
 
   useEffect(() => {
     if (cartProd) {
@@ -79,11 +99,10 @@ const Cart = () => {
     }
   }, [cartProd]);
   let total = 0;
-  for(let prod of cartProd){
-    let totalProductPrice = products.find(p=>p._id==prod)?.price||0;
+  for (let prod of cartProd) {
+    let totalProductPrice = products.find((p) => p._id == prod)?.price || 0;
     total += totalProductPrice;
-    console.log(total)
-    
+    console.log(total);
   }
   return (
     <>
@@ -104,26 +123,28 @@ const Cart = () => {
                   </tr>
                 </thead>
                 <tbody>
-                {products?.map((prod) => (
+                  {products?.map((prod) => (
                     <ProductDesc>
                       <td>
                         <ProductImage>
                           <img src={prod?.images[0]} alt="prodimg" />
                         </ProductImage>
-                       <h2>
-                         {prod.title}
-                        </h2>
+                        <h2>{prod.title}</h2>
                       </td>
                       <td>
                         <h2>
                           <StyledQuantityBox>
-                            <ButtonIncDec onClick={()=>removeProd(prod._id)}>-</ButtonIncDec>
-                            
-                             <StyledQuantity>
-                               {cartProd?.filter((id) => id === prod._id).length}
-                              </StyledQuantity>
-                            
-                            <ButtonIncDec onClick={()=>addToCart(prod._id)}>+</ButtonIncDec>
+                            <ButtonIncDec onClick={() => removeProd(prod._id)}>
+                              -
+                            </ButtonIncDec>
+
+                            <StyledQuantity>
+                              {cartProd?.filter((id) => id === prod._id).length}
+                            </StyledQuantity>
+
+                            <ButtonIncDec onClick={() => addToCart(prod._id)}>
+                              +
+                            </ButtonIncDec>
                           </StyledQuantityBox>
                         </h2>
                       </td>
@@ -135,29 +156,72 @@ const Cart = () => {
                         </h2>
                       </td>
                     </ProductDesc>
-                    
-                    ))}
-                    <tr>
-                      <td></td>
-                      <td></td>
-                      <td>
-                        <h2>
-                        ${total}
-                        </h2>
-                        </td>
-                    </tr>
-                    </tbody>
+                  ))}
+                  <tr>
+                    <td></td>
+                    <td></td>
+                    <td>
+                      <h2>${total}</h2>
+                    </td>
+                  </tr>
+                </tbody>
               </Table>
             )}
           </Box>
           {cartProd?.length > 0 && (
             <Box>
               <h2>Order Information</h2>
-              <input type="text" placeholder="Address" />
-              <input type="text" placeholder="Second Address" />
-              <Button block size={"l"}>
-                Continue Payment
-              </Button>
+              <form action="post" autoComplete="off">
+                <Input
+                  type="text"
+                  value={name}
+                  onChange={(e) => setName(e.target.value)}
+                  name="name"
+                  placeholder="Name"
+                />
+                <Input
+                  type="text"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  name="email"
+                  placeholder="Email"
+                />
+                <CityInfo>
+                  <Input
+                    type="text"
+                    value={city}
+                    onChange={(e) => setCity(e.target.value)}
+                    name="city"
+                    placeholder="City"
+                  />
+                  <Input
+                    type="text"
+                    value={postal}
+                    onChange={(e) => setPostal(e.target.value)}
+                    name="postalCode"
+                    placeholder="Postal Code"
+                  />
+                </CityInfo>
+
+                <Input
+                  type="text"
+                  value={address}
+                  onChange={(e) => setAddress(e.target.value)}
+                  name="address"
+                  placeholder="Address"
+                />
+                <Input
+                  type="text"
+                  value={country}
+                  onChange={(e) => setCountry(e.target.value)}
+                  name="country"
+                  placeholder="Country"
+                />
+                <input type="hidden" value={cartProd.join(',')}/>
+                <Button block size={"l"} type='submit'>
+                  Continue Payment
+                </Button>
+              </form>
             </Box>
           )}
         </StyledCart>
