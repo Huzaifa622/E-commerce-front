@@ -87,7 +87,7 @@ const Cart = () => {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [city, setCity] = useState("");
-  const [postal, setPostal] = useState("");
+  const [postalCode, setPostal] = useState("");
   const [address, setAddress] = useState("");
   const [country, setCountry] = useState("");
 
@@ -171,7 +171,7 @@ const Cart = () => {
           {cartProd?.length > 0 && (
             <Box>
               <h2>Order Information</h2>
-              <form action="post" autoComplete="off">
+              <form method="POST" action="/api/checkout" autoComplete="off">
                 <Input
                   type="text"
                   value={name}
@@ -196,8 +196,8 @@ const Cart = () => {
                   />
                   <Input
                     type="text"
-                    value={postal}
-                    onChange={(e) => setPostal(e.target.value)}
+                    value={postalCode}
+                    onChange={(e) => setPostalCode(e.target.value)}
                     name="postalCode"
                     placeholder="Postal Code"
                   />
@@ -217,8 +217,12 @@ const Cart = () => {
                   name="country"
                   placeholder="Country"
                 />
-                <input type="hidden" value={cartProd.join(',')}/>
-                <Button block size={"l"} type='submit'>
+                <input
+                  type="hidden"
+                  name="prodcuts"
+                  value={cartProd.join(",")}
+                />
+                <Button block size={"l"} type="Submit">
                   Continue Payment
                 </Button>
               </form>
