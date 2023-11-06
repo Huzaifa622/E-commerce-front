@@ -219,8 +219,8 @@ const Cart = () => {
                 />
                 <input
                   type="hidden"
-                  name="prodcuts"
-                  value={cartProd.join(",")}
+                  name="products"
+                  value={cartProd.join(',')}
                 />
                 <Button block size={"l"} type="Submit">
                   Continue Payment
