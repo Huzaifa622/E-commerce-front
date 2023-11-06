@@ -1,13 +1,13 @@
 const { Schema, model, models } = require("mongoose");
 
 const OrderSchema = new Schema({
-  list_items: Object,
-  name,
-  email,
-  city,
-  address,
-  postalCode,
-  country,
+  items_list: Object,
+  name:String,
+  email:String,
+  city:String,
+  address:String,
+  postalCode:String,
+  country:String,
   paid: Boolean,
 });
 
