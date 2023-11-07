@@ -87,7 +87,7 @@ const Cart = () => {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [city, setCity] = useState("");
-  const [postalCode, setPostal] = useState("");
+  const [postalCode, setPostalCode] = useState("");
   const [address, setAddress] = useState("");
   const [country, setCountry] = useState("");
 

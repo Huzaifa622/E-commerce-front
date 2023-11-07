@@ -2,7 +2,7 @@ import { mongooseConnect } from "@/lib/mongoose";
 import { Order } from "@/models/Order";
 import { Product } from "@/models/Product";
 import Stripe from "stripe";
-const stripe = require("stripe")(process.env.STRIPE_SECRET_KEY);
+const stripe = require("stripe")(process.env.STRIPE_SK);
 
 export default async function handler(req, res) {
   if (req.method !== "POST") {
@@ -18,24 +18,24 @@ export default async function handler(req, res) {
   const productInfos = await Product.find({ _id: uniqueIds });
   // const flet = products.f
 
-  let items_list = [];
+  let line_items = [];
   for (const prodId of uniqueIds) {
     const productInfo = productInfos.find((p) => p._id.toString() == prodId);
     const quantity = productIds.filter((id) => id === prodId).length || 0;
     if (quantity && productInfo) {
-      items_list.push({
+      line_items.push({
         quantity,
-        Price_data: {
+        price_data: {
           currency: "USD",
           product_data: { name: productInfo.title },
-          unit_ammount: productInfo.price * quantity,
+          unit_amount: productInfo.price *100,
         },
       });
     }
   }
 
   const orderDoc = await Order.create({
-    items_list,
+    line_items,
     name,
     email,
     city,
@@ -46,11 +46,11 @@ export default async function handler(req, res) {
   });
 
   const session = await stripe.checkout.sessions.create({
-    items_list,
+    line_items,
     mode: "payment",
     customer_email: email,
     success_url: process.env.PUBLIC_URL + "/cart?success=1",
-    cancel_url: process.env.PUBLIC_URL + "/cart?cancelled=1",
+    cancel_url: process.env.PUBLIC_URL + "/cart?canceled=1",
     metadata: { orderId: orderDoc._id.toString() },
   });
   res.json({
