@@ -82,7 +82,7 @@ const CityInfo = styled.div`
   gap: 4px;
 `;
 const Cart = () => {
-  const { cartProd, addToCart, removeProd } = useContext(CartContext);
+  const { cartProd, addToCart, removeProd ,clearCart } = useContext(CartContext);
   const [products, setProducts] = useState([]);
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
@@ -98,6 +98,13 @@ const Cart = () => {
       });
     }
   }, [cartProd]);
+useEffect(()=>{
+  if(typeof window !== 'undefined' && window.location.href.includes("success")) {
+    clearCart();
+  }
+
+},[])
+
   let total = 0;
   for (let prod of cartProd) {
     let totalProductPrice = products.find((p) => p._id == prod)?.price || 0;
@@ -121,16 +128,17 @@ const Cart = () => {
     }
   };
 
-  if (window.location.href.includes("success")) {
+  if (typeof window !== 'undefined' && window?.location.href.includes("success")) { 
     return (
       <>
-        <Header />
+      <Header />
         <Center>
           <StyledCart>
             <Box>
-              <h1>Thanks for your Order</h1>
+              <h2>Thanks for your Order</h2>
               <p>We will email you when your order will be sent</p>
             </Box>
+          
           </StyledCart>
         </Center>
       </>

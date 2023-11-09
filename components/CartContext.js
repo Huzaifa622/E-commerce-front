@@ -26,8 +26,13 @@ setCartProd(prev=>{
   return newArr
 })
   }
+
+  const clearCart = () =>{
+    setCartProd([])
+  }
+  
   return (
-    <CartContext.Provider value={{ setCartProd, cartProd, addToCart , removeProd }}>
+    <CartContext.Provider value={{ setCartProd, cartProd, addToCart , removeProd, clearCart }}>
       {children}
     </CartContext.Provider>
   );
